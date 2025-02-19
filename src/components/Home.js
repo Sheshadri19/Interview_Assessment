@@ -1,20 +1,13 @@
-import React, { useState } from 'react';
-import { Button, Typography, Box, Grid, Card, CardContent, IconButton, Icon } from '@mui/material';
+import React from 'react';
+import { Button, Typography, Box, Grid, Card, CardContent, Icon } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import { FormatBold, Devices, SaveAlt, Brightness4, Brightness7 } from '@mui/icons-material';
+import { FormatBold, Devices, SaveAlt } from '@mui/icons-material';
 import { useSpring, animated } from 'react-spring';
 
 const Home = () => {
   const navigate = useNavigate();
-  const [darkMode, setDarkMode] = useState(false);
 
-  // Animations using React Spring
-  const darkModeToggleAnimation = useSpring({
-    opacity: darkMode ? 1 : 0,
-    transform: darkMode ? 'rotate(180deg)' : 'rotate(0deg)',
-    config: { tension: 170, friction: 26 },
-  });
-
+  // Animations using React Spring for header, cards, and buttons
   const headerAnimation = useSpring({
     opacity: 1,
     transform: 'translateY(0)',
@@ -39,12 +32,9 @@ const Home = () => {
     delay: 500,
   });
 
+  // Navigate to the rich text editor page
   const handleNavigate = () => {
     navigate('/richtexteditor');
-  };
-
-  const toggleDarkMode = () => {
-    setDarkMode(!darkMode);
   };
 
   return (
@@ -52,9 +42,9 @@ const Home = () => {
       sx={{
         textAlign: 'center',
         marginTop: '5%',
-        backgroundColor: darkMode ? '#121212' : 'white',
+        backgroundColor: 'white', // Light mode background
         minHeight: '100vh',
-        color: darkMode ? 'white' : 'black',
+        color: 'black', // Text color for light mode
         padding: 4,
         transition: 'all 0.3s ease',
         display: 'flex',
@@ -63,37 +53,50 @@ const Home = () => {
         alignItems: 'center',
       }}
     >
-      {/* Dark Mode Toggle Icon */}
-      <animated.div style={darkModeToggleAnimation}>
-        <IconButton
-          onClick={toggleDarkMode}
-          sx={{
-            position: 'absolute',
-            top: 16,
-            right: 16,
-            color: darkMode ? 'white' : 'black',
-          }}
-        >
-          {darkMode ? <Brightness7 /> : <Brightness4 />}
-        </IconButton>
-      </animated.div>
-
       {/* Header Animation */}
       <animated.div style={headerAnimation}>
-        <Typography variant="h2" sx={{ fontWeight: 700, marginBottom: 3, fontSize: '2.5rem', color: darkMode ? 'primary.main' : 'secondary.main' }}>
-          Welcome to My<br />
+        <Typography
+          variant="h2"
+          sx={{
+            fontWeight: 700,
+            marginBottom: 3,
+            fontSize: '2.5rem',
+            color: 'secondary.main', // Header color
+          }}
+        >
+          Welcome to My
+          <br />
           Feature Rich Text Editor App
         </Typography>
-        <Typography variant="h5" sx={{ fontWeight: 400, marginBottom: 3, fontSize: '1.25rem', color: darkMode ? 'text.secondary' : 'text.primary' }}>
+        <Typography
+          variant="h5"
+          sx={{
+            fontWeight: 400,
+            marginBottom: 3,
+            fontSize: '1.25rem',
+            color: 'text.primary', // Subheading color
+          }}
+        >
           A powerful and easy-to-use rich text editor with multiple features.
         </Typography>
       </animated.div>
 
       {/* Cards for Features */}
       <Grid container spacing={4} justifyContent="center">
+        {/* Card 1: Rich Text Features */}
         <Grid item xs={12} sm={6} md={4}>
           <animated.div style={cardAnimation}>
-            <Card sx={{ maxWidth: 345, boxShadow: 6, display: 'flex', flexDirection: 'column', alignItems: 'center', padding: 2, backgroundColor: darkMode ? '#333' : '#f5f5f5' }}>
+            <Card
+              sx={{
+                maxWidth: 345,
+                boxShadow: 6,
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                padding: 2,
+                backgroundColor: '#f5f5f5', // Card background color
+              }}
+            >
               <Icon sx={{ fontSize: 50, color: 'primary.main' }}>
                 <FormatBold />
               </Icon>
@@ -101,16 +104,28 @@ const Home = () => {
                 <Typography variant="h6" gutterBottom>
                   Rich Text Features
                 </Typography>
-                <Typography variant="body2" color={darkMode ? 'text.secondary' : 'text.primary'}>
+                <Typography variant="body2" color={'text.primary'}>
                   Bold, italic, underline, lists, and more—everything you need for rich text editing.
                 </Typography>
               </CardContent>
             </Card>
           </animated.div>
         </Grid>
+
+        {/* Card 2: Responsive Design */}
         <Grid item xs={12} sm={6} md={4}>
           <animated.div style={cardAnimation}>
-            <Card sx={{ maxWidth: 345, boxShadow: 6, display: 'flex', flexDirection: 'column', alignItems: 'center', padding: 2, backgroundColor: darkMode ? '#333' : '#f5f5f5' }}>
+            <Card
+              sx={{
+                maxWidth: 345,
+                boxShadow: 6,
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                padding: 2,
+                backgroundColor: '#f5f5f5', // Card background color
+              }}
+            >
               <Icon sx={{ fontSize: 50, color: 'primary.main' }}>
                 <Devices />
               </Icon>
@@ -118,16 +133,28 @@ const Home = () => {
                 <Typography variant="h6" gutterBottom>
                   Responsive Design
                 </Typography>
-                <Typography variant="body2" color={darkMode ? 'text.secondary' : 'text.primary'}>
+                <Typography variant="body2" color={'text.primary'}>
                   Optimized for all devices, providing a seamless experience across screens.
                 </Typography>
               </CardContent>
             </Card>
           </animated.div>
         </Grid>
+
+        {/* Card 3: Data Persistence */}
         <Grid item xs={12} sm={6} md={4}>
           <animated.div style={cardAnimation}>
-            <Card sx={{ maxWidth: 345, boxShadow: 6, display: 'flex', flexDirection: 'column', alignItems: 'center', padding: 2, backgroundColor: darkMode ? '#333' : '#f5f5f5' }}>
+            <Card
+              sx={{
+                maxWidth: 345,
+                boxShadow: 6,
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                padding: 2,
+                backgroundColor: '#f5f5f5', // Card background color
+              }}
+            >
               <Icon sx={{ fontSize: 50, color: 'primary.main' }}>
                 <SaveAlt />
               </Icon>
@@ -135,7 +162,7 @@ const Home = () => {
                 <Typography variant="h6" gutterBottom>
                   Data Persistence
                 </Typography>
-                <Typography variant="body2" color={darkMode ? 'text.secondary' : 'text.primary'}>
+                <Typography variant="body2" color={'text.primary'}>
                   Save and load your work using local storage, ensuring no data is lost.
                 </Typography>
               </CardContent>

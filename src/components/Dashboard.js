@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Box, Typography, Button, Avatar, Paper, Grid } from '@mui/material';
 import { Line } from 'react-chartjs-2';
 import 'chart.js/auto';
-import { auth, onAuthStateChanged } from '../firebaseConfig'; // Assuming Firebase setup
+import { auth, onAuthStateChanged } from '../firebaseConfig'; 
 import { useSpring, animated } from 'react-spring';
 
 function Dashboard() {
